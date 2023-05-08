@@ -1,10 +1,36 @@
+html, body, #root, .App {
+  height: 100%;
+  width: 100%;
+  background-color: #a0d2eb;
+}
+
 .App {
-  text-align: center;
+  justify-content: center;
+  align-content: center;
+  display: grid;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.title {
+  font-size: xx-large;
+  padding-bottom: 50%;
+  color: darkred;
+}
+
+.status-title {
+  padding-top: 25%;
+  font-weight: bolder;
+  font-size: xx-large;
+}
+
+.status {
+  padding-top: 2%;
+  font-size: larger;
+  font-style: italic;
 }
 
 @media (prefers-reduced-motion: no-preference) {

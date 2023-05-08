@@ -2,6 +2,7 @@
   "name": "xen-automatic-mint",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@material/react-button": "^0.15.0",
     "@testing-library/jest-dom": "^5.16.5",

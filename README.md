@@ -9,3 +9,5 @@
 ### Place your mouse arrow above the popup window, so the autoclicker will accept transactions (optional)
 
 ### Profit!
+
+### If you want to automatically claim mintable XENFTs, input the highest token ID of your mint.

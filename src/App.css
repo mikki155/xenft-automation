@@ -17,12 +17,12 @@ html, body, #root, .App {
 
 .title {
   font-size: xx-large;
-  padding-bottom: 50%;
+  padding-bottom: 25%;
   color: darkred;
 }
 
 .status-title {
-  padding-top: 25%;
+  padding-top: 5%;
   font-weight: bolder;
   font-size: xx-large;
 }
@@ -31,6 +31,16 @@ html, body, #root, .App {
   padding-top: 2%;
   font-size: larger;
   font-style: italic;
+}
+
+.mint-title {
+  font-size: x-large;
+  padding-bottom: 5%;
+  color: darkred;
+}
+
+.divider-padding {
+  padding: 5% 0 5% 0;
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -4,6 +4,7 @@ import Web3 from 'web3';
 import Button from '@material/react-button';
 import '@material/react-button/dist/button.css';
 import React from 'react';
+import { Divider } from "@fluentui/react-divider";
 
 declare global {
   interface Window {
@@ -17,8 +18,10 @@ let web3;
 
 const [vmuState, setVmuState] = useState<number>(1);
 const [durationState, setDurationState] = useState<number>(1);
+const [tokenId, setTokenId] = useState<number>(1);
 const [clicked, setClicked] = useState<boolean>(false);
 const [status, setStatus] = useState<string>("idle");
+const [claimBtn, setClaimBtn] = useState<boolean>(false);
 
 // We are in the browser and MetaMask is running
 web3 = new Web3(window.ethereum);
@@ -38,6 +41,16 @@ async function mintXenfts(count, term) {
   });
   setStatus("Finished claiming, transaction hash: " + result.transactionHash);
   await mintXenfts(count, term);
+}
+
+async function claimXenfts(tokenId) {
+  const accounts = await web3.eth.getAccounts();
+  setStatus("bulk minting for account: " + accounts[0] + ", with token ID: " + tokenId);
+  const result = await contractInstance.methods.bulkClaimMintReward(tokenId, accounts[0]).send({
+    from: accounts[0],
+  });
+  setTokenId(tokenId-1);
+  await claimXenfts(tokenId);
 }
 
   return (
@@ -66,6 +79,33 @@ async function mintXenfts(count, term) {
     }}>
         {clicked ? 'Running' : 'Start'}
       </Button>
+
+      <div className='divider-padding'>
+        <Divider />
+      </div>
+
+      <div className='mint-title'>
+        Use the protocol below to automatically claim XENFTs *some transactions will likely fail and you'll need to refresh the page*
+      </div>
+      Input the TokenId of your highest claimable XENFT
+      <input
+        type="number"
+        min="1"
+        onInput={(e) => setTokenId(parseInt(e.currentTarget.value))}
+        value={tokenId}
+      />
+      <Button raised disabled={claimBtn} onClick={() => {
+        setClaimBtn(true);
+        setStatus("starting mint protocol");
+        claimXenfts(tokenId);
+      }}>
+        {claimBtn ? 'Running' : 'Start'}
+      </Button>
+      
+      <div className='divider-padding'>
+        <Divider />
+      </div>
+      
       <div className="status-title">
         Status:
       </div>
